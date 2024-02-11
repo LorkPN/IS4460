@@ -1,7 +1,17 @@
 <html>
 <body>
     {{ hi }}
-    <br>
     {{ name }}
+    <ol>
+        {% for str in names %}
+            <li>{{str}}</li>
+        {% endfor %}
+    </ol>
+    <br>
+    <p>{{names.0}}</p>
+    <br>
+    <p>
+        The type of the boat is {{boat.type}}.
+    </p>
 </body>
 </html>
