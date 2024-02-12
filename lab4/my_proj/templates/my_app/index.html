@@ -1,17 +1,23 @@
 <html>
 <body>
-    {{ hi }}
-    {{ name }}
+    <p>
+        Original name was {{original_name}} title name is {{new_name}}
+    </p>
     <ol>
-        {% for str in names %}
+        {% for str in name_list %}
             <li>{{str}}</li>
         {% endfor %}
     </ol>
-    <br>
-    <p>{{names.0}}</p>
-    <br>
+    <p>The second name is {{name_list.1}}</p>
+    <ol>
+        {% for str in title_name_list %}
+            <li>{{str}}</li>
+        {% endfor %}
+    </ol>
     <p>
-        The type of the boat is {{boat.type}}.
+        The first car is {{car1.color}} and goes {{car1.sound}}. <br>
+        The second car is {{car2.color}} and goes {{car2.sound}}. <br>
+        The motorcycle is {{motorcycle1.color}} and goes {{motorcycle1.sound}}.
     </p>
 </body>
 </html>
