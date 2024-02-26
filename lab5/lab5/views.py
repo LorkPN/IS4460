@@ -18,20 +18,15 @@ class HomePageView(View):
         form = FeedbackForm(request.POST)
 
         my_message = ""
-        sup = ""
-
-        service_selected = False;
 
         if form.is_valid():
-            my_message = form.cleaned_data['my_message']
             service_selected = 'srvc' in form.cleaned_data['review_area']
-
-            return redirect('thanks/')
-
+            my_message = form.cleaned_data['my_message']
+            my_name = form.cleaned_data['your_name']
+            return redirect(f'thanks/?name={my_name}&service_selected={service_selected}&message={my_message}')
+            
         #you don't need an else here because the return function exits the 'post' method
-        context = {'form':form,
-                   'my_message':my_message, 
-                   'service_selected':service_selected}
+        context = {'form':form}
 
         return render(request, self.template_name, context)
         
@@ -43,8 +38,10 @@ class ThankYouPageView(View):
 
     def get(self, request):
 
-        my_name = "Matt Young"
+        my_name = request.GET.get('name')
+        my_message = request.GET.get('message')
+        service_selected = request.GET.get('service_selected') == "True"
 
-        context = {'my_name':my_name}
+        context = {'my_name':my_name, 'service_selected':service_selected, 'my_message':my_message}
 
         return render(request, self.template_name, context)

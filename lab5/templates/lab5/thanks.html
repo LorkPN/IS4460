@@ -1,6 +1,16 @@
 <html>
     <body>
         <h1>Thanks, {{my_name}}, for submitting the review.</h1>
+        <p>Your message is: {{my_message}}</p>
+        {% if service_selected %}
+            <p>
+                You have selected service as your review type.
+            </p>
+            {% else %}
+            <p>
+                You have not selected service as your review type.
+            </p>
+        {% endif %}
         <a href={% url 'home' %}>Go back home</a>
     </body>
 </html>
