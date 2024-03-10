@@ -1,9 +1,9 @@
+#import Django files
 import os
 import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'movie_homework.settings')
 django.setup()
-
 from movie_app.models import Movie, User
 
 #1. Delete existing entries from Movie and User
