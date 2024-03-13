@@ -9,9 +9,6 @@ class Customer(models.Model):
     def __str__(self):
         return self.name
     
-
-
-    
 class Order(models.Model):
 
     customer = models.ForeignKey(to = Customer,on_delete = models.CASCADE)
@@ -30,5 +27,8 @@ class Order(models.Model):
         default='pending'
     )
 
-
+class Contact(models.Model):
+    customer = models.ForeignKey(to = Customer, on_delete=models.CASCADE)
+    phone = models.CharField(max_length=17)
+    email = models.EmailField()
 

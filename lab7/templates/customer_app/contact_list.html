@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+<body>
+
+    Contacts: <a href="{% url 'contact-edit' %}">new contact</a><br>
+    <table class="table">
+        <tr>
+            <th>Customer Name</th>
+            <th>Contact Id</th>
+            <th>Contact Email</th>
+            <th>Contact Phone</th>
+            <th></th>
+        </tr>
+        {% for contact in contacts %}
+        <td>{{ contact.customer.name }}</td><td>{{ contact.id }}</td><td>{{ contact.email}}</td><td>{{ contact.phone}}</td><td><a href="{% url 'contact-edit' contact.id %}">edit</a></td><td><a href="{% url 'order-delete' contact.id %}">delete</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+    </table>
+
+</body>
+
+</html>
