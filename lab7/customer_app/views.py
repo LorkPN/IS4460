@@ -25,7 +25,7 @@ class CustomerEdit(View):
     def post(self,request,customer_id):
 
         customer = Customer.objects.get(pk=customer_id)
-        form = CustomerForm(request.POST,instance=customer)
+        form = CustomerForm(request.POST,request.FILES,instance=customer)
 
         if form.is_valid():
             customer = form.save()

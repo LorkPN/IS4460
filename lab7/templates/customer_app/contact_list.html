@@ -15,7 +15,7 @@
             <th></th>
         </tr>
         {% for contact in contacts %}
-        <td>{{ contact.customer.name }}</td><td>{{ contact.id }}</td><td>{{ contact.email}}</td><td>{{ contact.phone}}</td><td><a href="{% url 'contact-edit' contact.id %}">edit</a></td><td><a href="{% url 'order-delete' contact.id %}">delete</a></td>
+        <td>{{ contact.customer.name }}</td><td>{{ contact.id }}</td><td>{{ contact.email}}</td><td>{{ contact.phone}}</td><td><a href="{% url 'contact-edit' contact.id %}">edit</a></td>
         </tr>
         {% endfor %}
       </table>
