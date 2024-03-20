@@ -4,7 +4,7 @@ from customer_app.models import Customer,Order,Contact
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['name']
+        fields = '__all__'
 
 class OrderForm(forms.ModelForm):
     class Meta:
