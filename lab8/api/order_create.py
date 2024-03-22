@@ -5,9 +5,10 @@ cust_id = 2
 api_url = 'http://127.0.0.1:8000/api/orders/'
 
 order_data = {
-    "order_total": "777.77",
+    "order_total": 777.77,
     "notes": "Minting",
-    "customer_id" : str(cust_id)
+    "customer_id" : cust_id,
+    "status":'pending'
 }
 
 response = requests.post(url = api_url,
