@@ -6,7 +6,7 @@ api_url = 'http://127.0.0.1:8000/api/customers/'
 customer_data = {
     "name": "Henry II",
     "email": "GoldenRule@gmail.com",
-    "phone_number":"(020)497-5559"
+    "phone_number":"(020) 497-5559"
 }
 
 response = requests.post(url = api_url,
