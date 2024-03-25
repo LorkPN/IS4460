@@ -20,13 +20,12 @@
         </div>
         <div class="row align-items-center justify-content-center">
             <div class="col-md-1">
-                {% csrf_token %}
-                <form method="post" action="{% url 'movie-list' %}">
-                    <h3>Username:<h3>
-                    <input type="text" name="username"><br>
-                    <h3>Password:<h3>
-                    <input type="text" name="password"><br><br>
-                    <input type="submit" value="OK" id="submit">
+                <form method="post" class="form">
+                    
+                    {% csrf_token %}
+                    {{form.as_p}}
+
+                    <input type="submit" value="Login">
                 </form>
             </div>
         </div>

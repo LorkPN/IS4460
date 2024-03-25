@@ -49,12 +49,12 @@
                     <h2>{{movie.title}}</h2>
                     <span class="glyphicon glyphicon-star"></span>
                     <p>{{movie.rating}}</p>
-                    <h3><a href="{% url 'movie-details' movie.id %}">See More ></a></h3>
+                    <h3><a href="{% url 'movie-details' movie.movie_id%}">See More ></a></h3>
                 </div>
             {%endfor%}
         </div>
         <div id="button">
-            <h1><a href="movie-add.html">Add Movie</a></h1>
+            <h1><a href="{% url 'movie-add' %}">Add Movie</a></h1>
         </div>
     </body>
 </html>

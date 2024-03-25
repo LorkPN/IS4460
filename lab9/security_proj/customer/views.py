@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.views import View
 from .models import Customer
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
-class CustomerListView(View):
+class CustomerListView(LoginRequiredMixin, View):
 
     def get(self,request):
         customers = Customer.objects.all()

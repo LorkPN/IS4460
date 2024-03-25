@@ -2,18 +2,22 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views import View
 from .models import Movie, User, Role
-from .forms import MoiveForm
+from .forms import MoiveForm, LoginForm
 
 # Create your views here.
 class LoginView(View):
 
     def get(self, request):
 
-        return render(request = request, template_name='movie_app/movie-login.html')
+        form = LoginForm()
+
+        context = {'form':form}
+
+        return render(request = request, template_name='movie_app/movie-login.html', context=context)
     
     def post(self, request):
         
-        return redirect('movie-list')
+        return redirect(reverse('movie-list'))
 
 class MovieListView(View):
 
@@ -35,14 +39,19 @@ class MovieAddView(View):
 
         return render(request = request, template_name='movie_app/movie-add.html', context = context)
     
-    def post(self, request):
+    def post(self, request, movie_id=None):
 
-        movie_form = MoiveForm(request.POST)
+        if movie_id:
+            movie = Movie.objects.get(pk=movie_id)
+        else:
+            movie = Movie()
+
+        movie_form = MoiveForm(request.POST, instance=movie)
 
         if movie_form.is_valid():
 
             movie_form.save()
-            redirect(reverse('movie-list'))
+            return redirect(reverse('movie-list'))
         
         context = {'form':movie_form}
 
@@ -76,7 +85,7 @@ class MovieUpdateView(View):
         if movie_form.is_valid():
 
             movie_form.save()
-            redirect(reverse('movie-details'))
+            return redirect(reverse('movie-details') + str(movie_id))
         
         context = {'form':movie_form, 'movie':movie}
 
