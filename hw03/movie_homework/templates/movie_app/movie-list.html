@@ -45,9 +45,9 @@
                 background-color: #707070;
                 margin-left: 1%;
                 margin-bottom: 1%;
+                height: 200px;
                 border: 8px solid;
                 border-radius: 10px;
-                height: 200px;
                 border-width: 5px;
                 border-style: ridge;
             }
@@ -61,6 +61,13 @@
             #page-wrapper {
                 padding-left: 10%;
                 margin-bottom: 20px;
+            }
+
+            #controls-wrapper {
+                width:100%;
+                display: flex;
+                justify-content: flex-end;
+                padding-right: 50px;
             }
         </style>
     </head>
@@ -82,10 +89,12 @@
                 </div>
             {%endfor%}
         </div>
-        <a href="{% url 'movie-add' %}">
-            <div id="button">
-                <h1>+ Add movie</h1>
-            </div>
-        </a>
+        <div id="controls-wrapper">
+            <a href="{% url 'movie-add' %}">
+                <div class="button">
+                    <h1>+ Add movie</h1>
+                </div>
+            </a>
+        </div>
     </body>
 </html>

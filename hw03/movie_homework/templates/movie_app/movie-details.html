@@ -9,12 +9,60 @@
 
         <style>
             #content-container {
-                background-color: #505050;
-                border-radius: 5px;
+                background-color: #707070;
+                padding: 20px;
+                margin: 10px;
+
+                border: 8px solid;
+                border-radius: 10px;
+                border-width: 5px;
+                border-style: ridge;
+                margin-bottom: 30px;
             }
 
             #rating {
                 display:inline;
+            }
+
+            h2 {
+                font-size: 40px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            h4 {
+                color: white;
+                font-size: 30px;
+            }
+
+            span {
+                color:yellow;
+                font-size:20px;
+            }
+
+            p {
+                font-size:15px;
+            }
+
+            #controls-wrapper {
+                width:100%;
+                display: flex;
+                padding-right: 50px;
+                padding-left: 50px;
+            }
+
+            #minus {
+                position: absolute;
+                right: 50px;
+            }
+
+            #back-button {
+                width: 120px;
+                position: fixed;
+                top: 20;
+                right: 20;
             }
         </style>
     </head>
@@ -24,10 +72,16 @@
             <div id="green-block"></div>
             <h1>Details</h1>
         </div>
+        <a href="{% url 'movie-list' %}">
+            <div class="button" id="back-button">
+                <h3>< Movies</h3>
+            </div>
+        </a>
         <div class="justify-content-start" id="content-container">
             <h2>{{movie.title}}</h2>
+            <h4>{{movie.release_year}}</h4>
             <h3>Director: {{movie.director}}</h3>
-            <p>Year: {{movie.release_year}}</p>
+            <hr>
             <span class="glyphicon glyphicon-star"></span>
             <p id="rating">{{movie.rating}}</p>
             <p>Budget: {{movie.budget}}</p>
@@ -35,11 +89,17 @@
             <p>Genre: {{movie.genre}}</p>
             <p>{{movie.description}}</p>
         </div>
-        <div id="button">
-            <h3><a href="{% url 'movie-update' movie.movie_id %}">Update Movie</a></h3>
-        </div>
-        <div id="button">
-            <h3><a href="{% url 'movie-delete' movie.movie_id %}">Delete Movie</a></h3>
+        <div id="controls-wrapper">
+            <a href="{% url 'movie-update' movie.movie_id %}">
+                <div class="button">
+                    <h3>+ Update Movie</h3>
+                </div>
+            </a>
+            <a href="{% url 'movie-delete' movie.movie_id %}">
+                <div class="button" id="minus">
+                    <h3>- Delete Movie</h3>
+                </div>
+            </a>
         </div>
     </body>
 </html>
