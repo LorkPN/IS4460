@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 from django.views import View
 from .models import Movie, User, Role
-from .forms import MoiveForm, LoginForm
+from .forms import MovieForm, LoginForm
 
 # Create your views here.
 class LoginView(View):
@@ -33,11 +33,11 @@ class MovieAddView(View):
     
     def get(self, request):
 
-        movie_form = MoiveForm()
+        movie_form = MovieForm()
 
-        context = {'form':movie_form}
+        context = {'form':movie_form, 'action':'Add'}
 
-        return render(request = request, template_name='movie_app/movie-add.html', context = context)
+        return render(request = request, template_name='movie_app/movie-update.html', context = context)
     
     def post(self, request, movie_id=None):
 
@@ -46,14 +46,14 @@ class MovieAddView(View):
         else:
             movie = Movie()
 
-        movie_form = MoiveForm(request.POST, instance=movie)
+        movie_form = MovieForm(request.POST, instance=movie)
 
         if movie_form.is_valid():
 
             movie_form.save()
             return redirect(reverse('movie-list'))
         
-        context = {'form':movie_form}
+        context = {'form':movie_form, 'action':'Add'}
 
         return render(request = request, template_name='movie_app/movie-add.html', context = context)
     
@@ -67,9 +67,9 @@ class MovieUpdateView(View):
         else:
             movie = Movie()
 
-        movie_form = MoiveForm(instance=movie)
+        movie_form = MovieForm(instance=movie)
 
-        context = {'form':movie_form, 'movie':movie}
+        context = {'form':movie_form, 'movie':movie, 'action':'Update'}
 
         return render(request = request, template_name='movie_app/movie-update.html', context = context)
     
@@ -80,14 +80,14 @@ class MovieUpdateView(View):
         else:
             movie = Movie()
 
-        movie_form = MoiveForm(request.POST, instance=movie)
+        movie_form = MovieForm(request.POST, instance=movie)
 
         if movie_form.is_valid():
 
             movie_form.save()
             return redirect(reverse('movie-details') + str(movie_id))
         
-        context = {'form':movie_form, 'movie':movie}
+        context = {'form':movie_form, 'movie':movie, 'action':'Update'}
 
         return render(request = request, template_name='movie_app/movie-update.html', context = context)
     
@@ -103,3 +103,29 @@ class MovieDetailView(View):
         context = {'movie':movie}
 
         return render(request = request, template_name='movie_app/movie-details.html', context = context)
+    
+class MovieDeleteView(View):
+    
+    def get(self, request, movie_id=None):
+
+        if movie_id:
+            movie = Movie.objects.get(pk=movie_id)
+        else:
+            movie = Movie()
+
+        movie_form = MovieForm(instance=movie)
+
+        for field in movie_form.fields:
+            movie_form.fields[field].widget.attrs['disabled'] = True
+
+        context = {'form':movie_form, 'movie':movie, 'action':'Delete'}
+
+        return render(request = request, template_name='movie_app/movie-update.html', context = context)
+
+    def post(self, request, movie_id=None):
+
+        movie = Movie.objects.get(pk=movie_id)
+        
+        movie.delete()
+            
+        return redirect(reverse('movie-list'))

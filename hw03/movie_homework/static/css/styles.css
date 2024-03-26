@@ -19,6 +19,10 @@ h3 {
     color: white;
 }
 
+span {
+    color:yellow;
+}
+
 #green-block {
     background-color: green;
     height: 40px;
@@ -37,12 +41,6 @@ h1 {
 #title-wrapper {
     height:80px;
     display: flex;
-}
-
-span {
-    color:yellow;
-    display: inline-block;
-    font-size: 12px;    
 }
 
 #submit {
@@ -65,4 +63,17 @@ a {
 a:hover {
     color:white;
     text-decoration: none;
+}
+
+.form-control {
+    color:black;
+    font-size: 15px;
+}
+
+#form-wrapper {
+    background-color: #606060;
+    border-radius: 20px;
+    padding: 10px;
+    border-width: 5px;
+    border-style: ridge;
 }

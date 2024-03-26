@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from .views import LoginView, MovieListView, MovieUpdateView, MovieDetailView, MovieAddView
+from .views import LoginView, MovieListView, MovieUpdateView, MovieDetailView, MovieAddView, MovieDeleteView
 
 urlpatterns = [
     path('login/', LoginView.as_view(), name='movie-login'),
@@ -10,4 +10,6 @@ urlpatterns = [
     path('details/<int:movie_id>/', MovieDetailView.as_view(), name='movie-details'),
     path('details/', MovieDetailView.as_view(), name='movie-details'),
     path('add/', MovieAddView.as_view(), name='movie-add'),
+    path('delete/<int:movie_id>/', MovieDeleteView.as_view(), name='movie-delete'),
+    path('delete/', MovieDeleteView.as_view(), name='movie-delete'),
 ]
