@@ -52,7 +52,35 @@ h1 {
     color:white;
     background-color: green;
     border-radius: 3px;
-    width: 80px;
+    padding: 5px;
+    width: 180px;
+    text-align: center;
+    border-width: 5px;
+    border-style: outset;
+    border-color: #008000;
+}
+
+#button:hover {
+    color:white;
+    background-color: #00A000;
+    border-radius: 3px;
+    padding: 5px;
+    width: 180px;
+    text-align: center;
+    border-width: 5px;
+    border-style: outset;
+    border-color: #00A000;
+}
+
+#button:active {
+    background-color: #006000;
+    border-radius: 3px;
+    padding: 5px;
+    width: 180px;
+    text-align: center;
+    border-width: 5px;
+    border-style: inset;
+    border-color: #008000;
 }
 
 a {

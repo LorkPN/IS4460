@@ -60,6 +60,7 @@
             
             #page-wrapper {
                 padding-left: 10%;
+                margin-bottom: 20px;
             }
         </style>
     </head>
@@ -81,8 +82,10 @@
                 </div>
             {%endfor%}
         </div>
-        <div id="button">
-            <h1><a href="{% url 'movie-add' %}">Add Movie</a></h1>
-        </div>
+        <a href="{% url 'movie-add' %}">
+            <div id="button">
+                <h1>+ Add movie</h1>
+            </div>
+        </a>
     </body>
 </html>
