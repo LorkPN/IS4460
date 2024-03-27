@@ -1,8 +1,10 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse
+from rest_framework import generics
 from django.views import View
-from .models import Movie, User, Role
+from .models import Movie
 from .forms import MovieForm, LoginForm
+from .serializers import MovieSerializer
 
 # Create your views here.
 class LoginView(View):
@@ -129,3 +131,12 @@ class MovieDeleteView(View):
         movie.delete()
             
         return redirect(reverse('movie-list'))
+
+
+class MovieListCreateView(generics.ListCreateAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+
+class MovieRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer

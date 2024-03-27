@@ -1,5 +1,4 @@
 import requests
-import json
 
 id = 2
 
