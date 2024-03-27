@@ -7,18 +7,44 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
         <style>
+            body {
+                overflow-x: hidden;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
             #submit {
                 color: white;
                 font-size:14px;
                 background-color: green;
             }
+
+            #back-button {
+                width: 120px;
+                position: fixed;
+                top: 20;
+                right: 20;
+            }
         </style>
     </head>
     <body>
+        <!-- Title Block -->
         <div class="align-items-center justify-content-start" id="title-wrapper">
             <div id="green-block"></div>
             <h1>{{action}} Movie</h1>
         </div>
+        <!-- Back Button -->
+        {%if back_target == 'list' %}
+        <a href="{% url 'movie-list' %}">
+        {% else %}
+        <a href="{% url 'movie-details' movie.movie_id %}">
+        {% endif %}
+            <div class="button" id="back-button">
+                <h3>< {{back_text}}</h3>
+            </div>
+        </a>
         <div class="row align-items-center justify-content-center">
             <div class="col-md-6" id="form-wrapper">
                 <form method="post" class="form">

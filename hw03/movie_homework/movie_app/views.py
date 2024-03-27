@@ -35,7 +35,7 @@ class MovieAddView(View):
 
         movie_form = MovieForm()
 
-        context = {'form':movie_form, 'action':'Add'}
+        context = {'form':movie_form, 'action':'Add', 'back_text':'Movies', 'back_target':'list'}
 
         return render(request = request, template_name='movie_app/movie-update.html', context = context)
     
@@ -53,7 +53,7 @@ class MovieAddView(View):
             movie_form.save()
             return redirect(reverse('movie-list'))
         
-        context = {'form':movie_form, 'action':'Add'}
+        context = {'form':movie_form, 'action':'Add', 'back_text':'Movies', 'back_target':'list'}
 
         return render(request = request, template_name='movie_app/movie-add.html', context = context)
     
@@ -69,7 +69,7 @@ class MovieUpdateView(View):
 
         movie_form = MovieForm(instance=movie)
 
-        context = {'form':movie_form, 'movie':movie, 'action':'Update'}
+        context = {'form':movie_form, 'movie':movie, 'action':'Update', 'back_text':'Details', 'back_target':"movie-details"}
 
         return render(request = request, template_name='movie_app/movie-update.html', context = context)
     
@@ -87,7 +87,7 @@ class MovieUpdateView(View):
             movie_form.save()
             return redirect(reverse('movie-details') + str(movie_id))
         
-        context = {'form':movie_form, 'movie':movie, 'action':'Update'}
+        context = {'form':movie_form, 'movie':movie, 'action':'Update', 'back_text':'Details', 'back_target':'movie-details'}
 
         return render(request = request, template_name='movie_app/movie-update.html', context = context)
     
@@ -118,7 +118,7 @@ class MovieDeleteView(View):
         for field in movie_form.fields:
             movie_form.fields[field].widget.attrs['disabled'] = True
 
-        context = {'form':movie_form, 'movie':movie, 'action':'Delete'}
+        context = {'form':movie_form, 'movie':movie, 'action':'Delete', 'back_text':'Details', 'back_target':'movie-details'}
 
         return render(request = request, template_name='movie_app/movie-update.html', context = context)
 
