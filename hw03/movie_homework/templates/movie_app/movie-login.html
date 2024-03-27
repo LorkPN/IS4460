@@ -8,7 +8,11 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
 
         <style>
-            
+            #submit {
+                color: white;
+                font-size:14px;
+                background-color: green;
+            }
         </style>
     </head>
     <body>
@@ -23,7 +27,7 @@
                     {% csrf_token %}
                     {{form.as_p}}
 
-                    <input type="submit" value="Login">
+                    <input id="submit" type="submit" value="Login">
                 </form>
             </div>
         </div>
